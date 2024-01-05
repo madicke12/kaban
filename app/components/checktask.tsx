@@ -2,15 +2,22 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-import { useState } from 'react';
-import { checkSubtask } from "../actions/submit";
+import React, { useState } from 'react';
+import { checkSubtask } from "../../lib/actions/actions";
 
-const CheckTask = ({ cisse }) => {
+interface CheckTaskProps {
+  cisse: {
+    id: string;
+    name: string;
+  };
+}
+
+const CheckTask = ({ cisse  }:CheckTaskProps) => {
   const [isChecked, setChecked] = useState(false);
 
   const handleClick = () => {
     setChecked(!isChecked);
-    const form = document.getElementById('samaForm');
+    const form = document.getElementById('samaForm') as HTMLFormElement  ;
     form.requestSubmit();
   };
 
