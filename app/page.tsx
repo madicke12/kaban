@@ -1,10 +1,10 @@
 /* Components */
-import { Counter } from './components/Counter/Counter'
+
 
 export default function IndexPage() {
-  return <Counter />
+  return (
+    <h2>hello</h2>
+  )
 }
 
-export const metadata = {
-  title: 'Redux Toolkit',
-}
+
