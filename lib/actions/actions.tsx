@@ -1,6 +1,6 @@
 "use server";
 import { PrismaClient } from "@prisma/client";
-import { promise, z } from "zod";
+import { any, z } from "zod";
 import { revalidatePath } from 'next/cache'
 
 const BoardSchema = z.object({
@@ -10,11 +10,13 @@ const BoardSchema = z.object({
 });
 
 const TaskSchema = z.object({
-    description: z.string(),
-    titre: z.string(),
-    columnId: z.string(),
+    description: z.string().min(1),
+    titre: z.string().min(1),
+    columnId: z.string().min(1),
     Subtasks: z.array(z.unknown()),
+    currentStatus:z.string().min(1)
 });
+const valid= z.string()
 
 
 export const submit = async (formdata: FormData): Promise<void> => {
@@ -97,9 +99,8 @@ export const createTask = async (formdata:FormData):Promise<void> => {
             (await prisma.task.create({
                 data: {
                     ...parsedData,
-                    currentStatus,
                     Subtasks: {
-                        create: parsedData.Subtasks.map((item) => ({
+                        create: parsedData.Subtasks.map((item:any) => ({
                             name: item,
                             isDone: false,
                         })),
@@ -114,28 +115,31 @@ export const createTask = async (formdata:FormData):Promise<void> => {
 export const checkSubtask = async (formdata:FormData):Promise<void> => {
     const prisma = new PrismaClient();
     const subtaskId = formdata.get("subtaskId");
+    const validId= valid.parse(subtaskId)
     console.log(subtaskId);
-    if(!subtaskId)return
     try {
         await prisma.subtask.update({
-            where: { id: subtaskId },
+            where: { id: validId },
             data: { isDone: true },
         });
     } catch (err) {
         console.log(err);
     }
 };
-export const deleteBoard = async (formdata:FormData):Promise<void> => {
+
+export const deleteBoard = async (formdata: FormData): Promise<void> => {
     const boardId = formdata.get("id");
+    const parsedId= valid.parse(boardId)
+
     const prisma = new PrismaClient();
 
     try {
         const boardToDelete = await prisma.board.findUnique({
-            where: { id: boardId },
+            where: { id: parsedId },
             include: {
                 columns: {
                     include: {
-                        Tasks: {
+                        Task: {
                             include: {
                                 Subtasks: true,
                             },
@@ -152,7 +156,7 @@ export const deleteBoard = async (formdata:FormData):Promise<void> => {
 
         await Promise.all(
             boardToDelete.columns.map(async (column) =>
-                column.Tasks.map(async (task) => {
+                column.Task.map(async (task) => {
                     await Promise.all(
                         task.Subtasks.map(async (subtask) => {
                             await prisma.subtask.delete({
@@ -166,32 +170,38 @@ export const deleteBoard = async (formdata:FormData):Promise<void> => {
                 })
             )
         );
+
         await Promise.all(
             boardToDelete.columns.map(async (column) => {
                 await prisma.column.delete({ where: { id: column.id } });
             })
         );
+
         await prisma.board.delete({
-            where: { id: boardId },
+            where: { id: parsedId },
         });
+
         // revalidatePath('/board', 'layout');
-    } catch (err) {
-        console.error(err);
+    } catch (error:any) {
+        console.error(`Error deleting board: ${error.message}`);
     } finally {
         await prisma.$disconnect();
     }
 };
 
-export const changeTaskStatus = async (FormData) => {
+
+export const changeTaskStatus = async (FormData :FormData):Promise<void> => {
     const prisma = new PrismaClient();
     const taskid = FormData.get("taskId");
     const statusName = FormData.get("status");
-
+    const parsedId= valid.parse(taskid)
+    const parsedStatus=valid.parse(statusName)
+    if(!statusName)return
     try {
         await prisma.task.update({
-            where: { id: taskid },
+            where: { id: parsedId },
             data: {
-                currentStatus: statusName,
+                currentStatus: parsedStatus,
             },
         });
         revalidatePath('/board', 'layout')
