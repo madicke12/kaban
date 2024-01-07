@@ -1,29 +1,34 @@
-# Redux Toolkit TypeScript Example
+# Kaban
 
-This example shows how to integrate Next.js with [Redux Toolkit](https://redux-toolkit.js.org).
 
-The **Redux Toolkit** is a standardized way to write Redux logic (create actions and reducers, setup the store with some default middlewares like redux devtools extension). This example demonstrates each of these features with Next.js
 
-## Deploy your own
+## Overview
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+Welcome to the Task Manager App – your go-to tool for effortless task management.This app keeps things simple, intuitive, and boosts your productivity.
+## Features
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-redux&project-name=with-redux&repository-name=with-redux)
+- **Task Creation:** Easily create tasks with details such as title, description, and due date.
+- **Subtasks:** Break down tasks into manageable subtasks for a more organized workflow.
+- **User-Friendly Interface:** Enjoy a sleek and easy-to-use interface for a seamless task management experience.
+- **Task Deletion:** Effortlessly remove completed or unnecessary tasks to keep your workspace clutter-free.
+- **Responsive Design:** Access your tasks from various devices with a responsive and adaptive layout.
 
-## How to use
+## Screenshots
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+![Screenshot 1]([link/to/screenshot1.png](https://github.com/madicke12/madicke-s-task-manangement-app/blob/main/task_management_by_madicke/src/app/assets/Screenshot.png?raw=true))
+![Screenshot 2](link/to/screenshot2.png)
+## Installation
 
-```bash
-npx create-next-app --example with-redux with-redux-app
-```
+1. **Clone the Repository:**
 
-```bash
-yarn create next-app --example with-redux with-redux-app
-```
-
-```bash
-pnpm create next-app --example with-redux with-redux-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+   ```bash
+   git clone https://github.com/madicke12/madicke-s-task-manangement-app.git
+2. **Navigate to the Project Folder:**
+   ```bash
+   cd madicke-s-task-manangement-app
+3. **Install Dependencies:**
+   ```bash
+   npm install
+4. **Run the App:**
+   ```bash
+   npm run dev
