@@ -1,9 +1,12 @@
 /* Components */
 
+import { AddBoardForm } from "./components/addBoardForm";
+import { Home } from "./components/home";
+
 
 export default function IndexPage() {
   return (
-    <h2>hello</h2>
+    <Home/>
   )
 }
 

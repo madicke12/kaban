@@ -1,4 +1,3 @@
-'use client'
 import { Button } from "@/components/ui/button";
 import {
   DialogDescription,
@@ -8,13 +7,14 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import DynamicInput from "./dynamic-input";
 
-import { useSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
 import { submit } from "../../lib/actions/actions";
+import { authOption } from "../api/auth/[...nextauth]/route";
 
- export const AddBoardForm =  () => {
-  const {data} = useSession()
+ export const AddBoardForm = async () => {
+  const session =  await getServerSession(authOption)
+  console.log(session)
   return (
     <form  method="post" action={submit}>
       <DialogHeader>
@@ -36,7 +36,7 @@ import { submit } from "../../lib/actions/actions";
           />
         </div>
         <div className="flex flex-col   mt-4 gap-4">
-          <input className="hidden" value={data?.user?.id} name="userId"/>
+          <input className="hidden" value={session.user.id} name="userId"/>
          <input type="text" className="hidden" value={JSON.stringify(['To Do','Doing','Done'])} readOnly name="columns" />
         </div>
       </div>
