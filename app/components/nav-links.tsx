@@ -7,14 +7,14 @@ import LinkS from "./link";
 
 const NavLinks = async () => {
   const prisma = new PrismaClient();
-  const user = await getServerSession(authOption)
+  // const user = await getServerSession(authOption)
   const boards = await prisma.board.findMany({
-    where:{ userId: user.id}
+    where:{ userId: '656f4da9e7241b17b75896bc'}
   });
 
   return (
     <>
-    <LinkS boards={boards} />
+    <LinkS boards={boards } />
       {/* {boards.map((link) => {
         return (
           <Link
