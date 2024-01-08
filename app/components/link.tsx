@@ -4,14 +4,20 @@ import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {TrashIcon} from '@heroicons/react/24/solid'
-import { deleteBoard } from "../actions/submit";
-const LinkS = ({ boards }) => {
+import { deleteBoard } from "@/lib/actions/actions";
+
+interface board {
+  id:String,
+  name:String,
+  userId:String
+}
+const LinkS = ({ boards }:any) => {
   const pathName = usePathname();
   console.log(pathName);
 
   return (
     boards &&
-    boards.map((link) => {
+    boards.map((link:any) => {
       return (
         <div key={link.id} className="flex items-center">
           <Button key={link.id} asChild className=" w-4/5" variant="outline">
