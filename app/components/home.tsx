@@ -7,7 +7,7 @@ export const Home = () => {
   return (
     <div>welcome to kaban Log in to continue
 
-        <Button onClick={()=>signIn(undefined,{callbackUrl:`${window.location.origin}/board`})}>Continue with google</Button>
+      {/* <Button onClick={()=>signIn(undefined,{callbackUrl:`${window.location.origin}/board`})}>Continue with google</Button> */}
     </div>
 
   )
