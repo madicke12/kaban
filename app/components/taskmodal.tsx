@@ -9,7 +9,7 @@ import {
 import CheckTask from "./checktask";
 import { TaskStatusSelect } from "./taskStatusSelect";
 
-const TaskModal = ({ madicke }) => {
+const TaskModal = ({ madicke }:any) => {
   //console.log(madicke.Subtasks)
   return (
     <Dialog>
@@ -33,7 +33,7 @@ const TaskModal = ({ madicke }) => {
         <div className="flex flex-col">
           <span>Subtask {madicke.Subtasks.length} </span>
 
-          {madicke.Subtasks.map((cisse) => (
+          {madicke.Subtasks.map((cisse:any) => (
             <CheckTask key={cisse.id} cisse={cisse} />
           ))}
           <div className=" px-1 mt-2  items-center">
