@@ -17,11 +17,11 @@ import { authOption } from "../api/auth/[...nextauth]/route";
 import DynamicInput from "./dynamic-input";
 import StatusSelect from "./select";
 import { PrismaClient } from "@prisma/client";
-import { createTask } from "../actions/submit";
+import { createTask } from "@/lib/actions/actions";
 
-const AddNewTask = async({id}) => {
+const AddNewTask = async({id}:any) => {
   const prisma = new PrismaClient()  
-  const session= await getServerSession(authOption)
+  //const session= await getServerSession(authOption)
   const board = await prisma.board.findUnique({
     where: { id },
     include: {
@@ -64,8 +64,8 @@ const AddNewTask = async({id}) => {
             <StatusSelect/>
             </div>
           </div>
-          <input type="text" value={session.user.id} className="hidden" name="userId" />
-          <input type="text" value={JSON.stringify(board.columns)} className="hidden" name="columns" />
+          <input type="text" value={'656f4da9e7241b17b75896bc'} className="hidden" name="userId" />
+          <input type="text" value={JSON.stringify(board?.columns)} className="hidden" name="columns" />
       <DialogFooter>
         <Button className="w-full mt-2 dark:hover:bg-white dark:hover:text-zinc-950" type="submit">
           Create new Task
