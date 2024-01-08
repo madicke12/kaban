@@ -5,12 +5,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
 
-const DynamicInput = ({ type }) => {
+const DynamicInput = ({ type }:any) => {
   const [inputCount, setInputCount] = useState([
     { id: Date.now() * 2, value: "" },
   ]);
 
-  const handleChange = (id, e) => {
+  const handleChange = (id:any, e:any) => {
     const updatedInputs = inputCount.map((item) => {
       if (item.id === id) {
         return { ...item, value: e.target.value };
@@ -26,13 +26,13 @@ const DynamicInput = ({ type }) => {
     setInputCount((prev) => [...prev, { id: Date.now(), value: "" }]);
   };
 
-  const handleDeleteInput = (id) => {
+  const handleDeleteInput = (id:any) => {
     setInputCount((prev) => prev.filter((input) => input.id !== id));
   };
 
   return (
     <div>
-      {inputCount.map((input) => (
+      {inputCount.map((input:any) => (
         <div className="flex" key={input.id}>
           <Input
             className="mb-2"
