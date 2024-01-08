@@ -13,8 +13,8 @@ import { submit } from "../../lib/actions/actions";
 import { authOption } from "../api/auth/[...nextauth]/route";
 
  export const AddBoardForm = async () => {
-  const session =  await getServerSession(authOption)
-  console.log(session)
+  //const session =  await getServerSession(authOption)
+  //console.log(session)
   return (
     <form  method="post" action={submit}>
       <DialogHeader>
@@ -36,7 +36,7 @@ import { authOption } from "../api/auth/[...nextauth]/route";
           />
         </div>
         <div className="flex flex-col   mt-4 gap-4">
-          <input className="hidden" value={session.user.id} name="userId"/>
+          <input className="hidden" value={'656f4da9e7241b17b75896bc'} name="userId"/>
          <input type="text" className="hidden" value={JSON.stringify(['To Do','Doing','Done'])} readOnly name="columns" />
         </div>
       </div>
