@@ -5,11 +5,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { changeTaskStatus } from "../actions/submit";
+import { changeTaskStatus } from "@/lib/actions/actions";
 import { Button } from "@/components/ui/button";
 
 const value = ["To Do", "Doing", "Done"];
-export const TaskStatusSelect = ({cisse}) => {
+export const TaskStatusSelect = ({cisse}:any) => {
   const SelectElements = value.map((item) => (
     <SelectItem key={item} value={item}>
       {item}
