@@ -20,10 +20,8 @@ export default function RootLayout(props: React.PropsWithChildren) {
             disableTransitionOnChange
 
           >
-            <SessionProvider>
 
               {props.children}
-            </SessionProvider>
           </ThemeProvider>
           </body >
       </html>
