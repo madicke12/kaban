@@ -1,6 +1,5 @@
 import { PrismaClient } from "@prisma/client";
 import Navbar from "@/app/components/navbar";
-import TaskModal from "@/app/components/taskmodal";
 
 
 const boardPage = async ({ params: params  }:any) => {
@@ -16,7 +15,7 @@ const boardPage = async ({ params: params  }:any) => {
 
   return (
     <>
-      <Navbar boardName={Board?.name} id={id} />
+      {/* <Navbar boardName={Board?.name} id={id} />
       <main className="flex w-full h-full overflow-y-scroll overflow-x-auto mt-3  p-3">
         {Board?.columns.map((column, index) => (
           <div
@@ -37,7 +36,7 @@ const boardPage = async ({ params: params  }:any) => {
           </div>
         ))}
       </main>
-      
+       */}
     </>
   );
 };
